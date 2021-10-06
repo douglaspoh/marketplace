@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 
 const CustomerSchema = mongoose.Schema({
     email: {
-        type: Mixed,
+        type: String,
         required: true
     },
     username: {
-        type: Mixed,
+        type: String,
         required: true
     },
     password: {
-        type: Mixed,
+        type: String,
         required: true       
     },
     first_name: {
@@ -30,7 +30,7 @@ const CustomerSchema = mongoose.Schema({
         required: true
     },
     created_at: {
-        type: Number,
+        type: Date,
         required: true
     }
 })

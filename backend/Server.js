@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+require('dotenv/config');
 const Customer = require('./models/Customer');
 
 const app = express();
 app.use(express.json());
-app.use(cors);
+app.use(cors());
 
 app.get('/', (req,res) => {
     res.send('Home page of products');
@@ -31,7 +32,7 @@ app.post('/register', async (req,res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         customer.password = hashedPassword;
         customer.save();
-        res.status(201).send(user);
+        res.status(201).send(customer);
     } catch{
         res.status(500).send('Hashing error');
     }
@@ -52,3 +53,11 @@ app.post('/login', async (req,res) => {
         res.status(500).send('Bcrypt error');
     }
 })
+
+mongoose.connect(
+    process.env.DB_CONNECTION,
+    ()=>console.log('Connected to mongoDB...')
+)
+
+const port = process.env.PORT || 3001
+app.listen(port, ()=>console.log(`Listening on port ${port}...`))
