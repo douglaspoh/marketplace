@@ -10,13 +10,13 @@ function Register() {
     const [gender, setGender] = useState('');
     const [createdate, setCreatedate] = useState('');
 
-    const submit = (e) => {
+    const register = (e) => {
         e.preventDefault();
     }
   
     return (
         <div className='form'>
-            <form onSubmit={submit}>
+            <form onSubmit={register}>
                 <div className='formitem'>
                     <label htmlFor='firstname'>First Name: </label>
                     <input type='text' onChange={(e)=>{setFirstname(e.target.value)}} value={firstname} name='firstname'/>

@@ -4,13 +4,13 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password,setPassword] = useState('');
 
-    const submit = (e) => {
+    const login = (e) => {
         e.preventDefault();
     }
 
     return (
         <div className='form'>
-            <form onSubmit={submit}>
+            <form onSubmit={login}>
                 <div className='formitem'>
                     <label htmlFor='username'>Username: </label>
                     <input type='text' onChange={(e)=>{setUsername(e.target.value)}} value={username} name='username'/>
