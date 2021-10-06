@@ -4,8 +4,8 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password,setPassword] = useState('');
 
-    const submit = () => {
-
+    const submit = (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -19,6 +19,7 @@ function Login() {
                     <label htmlFor='password'>Password: </label>
                     <input type='text' onChange={(e)=>{setPassword(e.target.value)}} value={password} name='password'/>
                 </div>
+                <button type='submit'>Login</button>
             </form>
         </div>
     )
