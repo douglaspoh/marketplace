@@ -12,7 +12,7 @@ app.get('/', (req,res) => {
     res.send('Home page of products');
 })
 
-app.post('/register', (req,res) => {
+app.post('/register', async (req,res) => {
     const customer = new Customer ({
         email: req.body.email,
         username: req.body.username,
@@ -34,5 +34,21 @@ app.post('/register', (req,res) => {
         res.status(201).send(user);
     } catch{
         res.status(500).send('Hashing error');
+    }
+})
+
+app.post('/login', async (req,res) => {
+    const customer = Customer.findOne({username: req.body.username})
+    if(customer==null){
+        res.status(400).send('Username is incorrect');
+    }
+    try{
+        if(await bcrypt.compare(req.body.password, customer.password)){
+            res.send('Login successful')
+        } else{
+            res.send('Password incorrect');
+        }
+    } catch{
+        res.status(500).send('Bcrypt error');
     }
 })
