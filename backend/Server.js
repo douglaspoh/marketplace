@@ -13,6 +13,15 @@ app.get('/', (req,res) => {
     res.send('Home page of products');
 })
 
+app.post('/categories', async (req,res) => {
+    const categories = await Categories.find();
+    if(!categories){
+        res.status(500).send('Could not fetch ')
+    } else{
+        res.status(200).send(categories)
+    }
+});
+
 app.post('/register', async (req,res) => {
     const customer = new Customer ({
         email: req.body.email,
