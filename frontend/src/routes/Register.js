@@ -12,6 +12,9 @@ function Register() {
 
     const register = (e) => {
         e.preventDefault();
+        setCreatedate(new Date());
+
+        fetch()
     }
   
     return (
