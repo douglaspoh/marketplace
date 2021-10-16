@@ -4,6 +4,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 require('dotenv/config');
 const Customer = require('./models/Customer');
+const Category = require('./models/Category');
 
 const app = express();
 app.use(express.json());
@@ -13,8 +14,8 @@ app.get('/', (req,res) => {
     res.send('Home page of products');
 })
 
-app.post('/categories', async (req,res) => {
-    const categories = await Categories.find();
+app.get('/categories', async (req,res) => {
+    const categories = await Category.find();
     if(!categories){
         res.status(500).send('Could not fetch ')
     } else{

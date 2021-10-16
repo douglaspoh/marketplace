@@ -1,10 +1,23 @@
-import React,{useEffect} from 'react'
+import React,{useState, useEffect} from 'react'
+import Category from '../components/Category';
 
 function Home() {
+    const [categories, setCategories] = useState([]);
 
-    const fetchcategories = (params) => {
-        fetch('http://localhost:3001/categories',
-        { method: 'POST' })
+    const fetchcategories = () => {
+        fetch('http://localhost:3001/categories', { 
+            method: 'GET' 
+        })
+        .then(response=>{
+            if(!response.ok){
+                throw new Error('Error cannot fetch category data')
+            }
+            return response.json()
+        })
+        .then(data=>{
+            setCategories(data)
+            console.log(data)
+        })
     }
     
     useEffect(()=>{
@@ -12,8 +25,10 @@ function Home() {
     }, []);
 
     return (
-        <div>
-            Home
+        <div className='main'>
+            {categories.map(cat =>
+                <Category key={cat.id} name={cat.name} description={cat.description} image={cat.image}/>
+            )}
         </div>
     )
 }
