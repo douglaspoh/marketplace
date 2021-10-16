@@ -30,7 +30,7 @@ app.post('/register', async (req,res) => {
     }
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        customer.password = hashedPassword;
+        customer.password = hashedPassword; 
         customer.save();
         res.status(201).send(customer);
     } catch{
@@ -39,7 +39,7 @@ app.post('/register', async (req,res) => {
 })
 
 app.post('/login', async (req,res) => {
-    const customer = Customer.findOne({username: req.body.username})
+    const customer = await Customer.findOne({username: req.body.username})
     if(customer==null){
         res.status(400).send('Username is incorrect');
     }
