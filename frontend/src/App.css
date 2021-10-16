@@ -1,11 +1,16 @@
 .navbar{
   display: flex;
   justify-content: space-between;
-  margin: 1rem 1rem 0rem 3rem;
+  padding: 0.5rem 1rem 2rem 3rem;
+  background-color: antiquewhite
 }
 
 .title{
   font-size: 4rem;
+}
+
+.navright{
+  display: flex;
 }
 
 .navitem{
@@ -15,12 +20,13 @@
 
 .navcart{
   max-height: 2rem;
+  margin: 0rem 0.2rem 0rem 1rem;
 }
 
 .main{
   display: flex;
   flex-wrap: wrap;
-  margin: 4rem 0rem 0rem 1rem;
+  margin: 2rem 0rem 0rem 1.4rem;
 }
 
 .catitem{
@@ -28,7 +34,7 @@
 }
 
 .form{
-  margin-top: 2rem;
+  margin: 2rem 0rem 0rem 3.2rem;
 }
 
 img.small{
@@ -40,5 +46,5 @@ img.small{
 }
 
 .products{
-  margin: 4rem 0rem 0rem 3.2rem;
+  margin: 2rem 0rem 0rem 3.2rem;
 }
