@@ -7,6 +7,10 @@ import Login from './routes/Login';
 import Register from './routes/Register';
 import Cart from './routes/Cart';
 import PrivateRoute from './routes/PrivateRoute';
+import Electronics from './routes/categories/Electronics';
+import Jewelery from './routes/categories/Jewelery';
+import Mens from './routes/categories/Mens';
+import Womens from './routes/categories/Womens';
 
 export const authContext = createContext();
 
@@ -23,6 +27,11 @@ function App() {
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>
             <PrivateRoute path='/cart' component={Cart}/>
+
+            <Route path='/Electronics' component={Electronics}/>
+            <Route path='/Jewelery' component={Jewelery}/>
+            <Route path="/Men's clothing" component={Mens}/>
+            <Route path="/Women's clothing" component={Womens}/>
           </Switch>
         </BrowserRouter>
       </authContext.Provider>

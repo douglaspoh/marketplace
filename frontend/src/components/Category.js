@@ -1,13 +1,14 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom';
 
 function Category(props) {
     const {name, description, image} = props;
 
     return (
-        <div>
+        <div className='catitem'>
             <div> <b>{name}</b> </div>
-            <img src={image} className='small' alt={description}/>
-            <div> {description} </div>
+            <NavLink to={`/${name}`}> <img src={image} className='small' alt={description}/> </NavLink>
+            <div className='description'> {description} </div>
         </div>
     )
 }

@@ -1,7 +1,35 @@
+.navbar{
+  display: flex;
+  justify-content: space-between
+}
+
+.title{
+  font-size: 3rem;
+}
+
+.navitem{
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
 .main{
   display: flex;
+  flex-wrap: wrap;
+  margin: 6rem;
+}
+
+.catitem{
+  margin: 2rem;
+}
+
+.form{
+  margin-top: 2rem;
 }
 
 img.small{
-  max-height: 8rem;
+  max-height: 15rem;
+}
+
+.description{
+  max-width: 20rem;
 }
