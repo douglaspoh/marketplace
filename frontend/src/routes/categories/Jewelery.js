@@ -2,7 +2,7 @@ import React from 'react'
 
 function Jewelery() {
     return (
-        <div>
+        <div className='products'>
             Jewelery
         </div>
     )

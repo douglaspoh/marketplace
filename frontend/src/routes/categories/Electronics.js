@@ -2,7 +2,7 @@ import React from 'react'
 
 function Electronics() {
     return (
-        <div>
+        <div className='products'>
             Electronics
         </div>
     )

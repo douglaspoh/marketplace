@@ -5,7 +5,7 @@ import cartlogo from '../img/cart.png';
 function NavBar() {
     return (
         <div className='navbar'>
-            <div className='title'> <b>Digital Marketplace</b> </div>
+            <div className='title'> <b>Real Shopee</b> </div>
             <div>
             <NavLink to='/' exact={true} className='navitem' activeStyle={{fontWeight:'bold',color:'red'}} style={{textDecoration:'none'}}>Home</NavLink>
             <NavLink to='/login' className='navitem' activeStyle={{fontWeight:'bold',color:'red'}} style={{textDecoration:'none'}}>Login</NavLink>

@@ -1,15 +1,15 @@
 .navbar{
   display: flex;
   justify-content: space-between;
-  margin: 1rem 1rem 0rem 0rem;
+  margin: 1rem 1rem 0rem 3rem;
 }
 
 .title{
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .navitem{
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-left: 0.5rem;
 }
 
@@ -20,7 +20,7 @@
 .main{
   display: flex;
   flex-wrap: wrap;
-  margin: 6rem;
+  margin: 4rem 0rem 0rem 1rem;
 }
 
 .catitem{
@@ -37,4 +37,8 @@ img.small{
 
 .description{
   max-width: 20rem;
+}
+
+.products{
+  margin: 4rem 0rem 0rem 3.2rem;
 }
