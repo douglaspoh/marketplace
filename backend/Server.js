@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 require('dotenv/config');
 const Customer = require('./models/Customer');
 const Category = require('./models/Category');
+const Product = require('./models/Product');
 
 const app = express();
 app.use(express.json());
@@ -17,11 +18,20 @@ app.get('/', (req,res) => {
 app.get('/categories', async (req,res) => {
     const categories = await Category.find();
     if(!categories){
-        res.status(500).send('Could not fetch ')
+        res.status(500).send('Could not fetch categories')
     } else{
         res.status(200).send(categories)
     }
 });
+
+app.get('/products', async (req,res) => {
+    const products = await Product.find();
+    if(!products){
+        res.status(500).send('Could not fetch products')
+    } else{
+        res.status(200).send(products)
+    }
+})
 
 app.post('/register', async (req,res) => {
     const customer = new Customer ({
