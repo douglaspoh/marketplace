@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Product from '../../components/Product';
 
 function Jewelery() {
     const [jewelery, setJewelery] = useState([]);
@@ -25,7 +26,9 @@ function Jewelery() {
 
     return (
         <div className='products'>
-            Jewelery
+            {jewelery.map(item =>
+                <Product key={item.id} title={item.title} description={item.description} price={item.price}/>
+            )}
         </div>
     )
 }
