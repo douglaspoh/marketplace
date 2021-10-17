@@ -26,8 +26,8 @@ function Electronics() {
 
     return (
         <div className='products'>
-            {electronics.map(item=>
-            <Product key={item.id} title={item.title} price={item.price} image={item.image} qty={item.qty}/>
+            {electronics.map(item =>
+                <Product key={item.id} title={item.title} price={item.price} image={item.image} qty={item.qty}/>
             )}
         </div>
     )
