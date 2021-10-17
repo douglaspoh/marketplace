@@ -4,7 +4,7 @@ import Product from '../../components/Product';
 function Electronics() {
     const [electronics, setElectronics] = useState([]);
     
-    const fetchelectronics = () => {
+    const fetchElectronics = () => {
         fetch('http://localhost:3001/products', {
             method: 'GET'
         })
@@ -21,7 +21,7 @@ function Electronics() {
     }
     
     useEffect(()=>{
-        fetchelectronics()
+        fetchElectronics()
     }, [])
 
     return (

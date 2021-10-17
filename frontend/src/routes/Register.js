@@ -8,11 +8,11 @@ function Register() {
     const [password, setPassword] = useState('');
     const [postalcode, setPostalcode] = useState('');
     const [gender, setGender] = useState('');
-    const [createdate, setCreatedate] = useState('');
+    const [createDate, setCreateDate] = useState('');
 
     const register = (e) => {
         e.preventDefault();
-        setCreatedate(new Date());
+        setCreateDate(new Date());
 
         fetch()
     }

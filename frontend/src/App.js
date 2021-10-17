@@ -22,22 +22,22 @@ function App() {
   return (
     <div className="App">
       <authContext.Provider value={auth}>
-      <cartContext.Provider value={cartOperations}>
-        <BrowserRouter>
-          <NavBar/>
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/login' component={Login}/>
-            <Route path='/register' component={Register}/>
-            <PrivateRoute path='/cart' component={Cart}/>
+        <cartContext.Provider value={cartOperations}>
+          <BrowserRouter>
+            <NavBar/>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/login' component={Login}/>
+              <Route path='/register' component={Register}/>
+              <PrivateRoute path='/cart' component={Cart}/>
 
-            <Route path='/Electronics' component={Electronics}/>
-            <Route path='/Jewelery' component={Jewelery}/>
-            <Route path="/Men's clothing" component={Mens}/>
-            <Route path="/Women's clothing" component={Womens}/>
-          </Switch>
-        </BrowserRouter>
-      </cartContext.Provider>
+              <Route path='/Electronics' component={Electronics}/>
+              <Route path='/Jewelery' component={Jewelery}/>
+              <Route path="/Men's clothing" component={Mens}/>
+              <Route path="/Women's clothing" component={Womens}/>
+            </Switch>
+          </BrowserRouter>
+        </cartContext.Provider>
       </authContext.Provider>
     </div>
   );
@@ -59,9 +59,9 @@ function useProvideAuth(){
 
 
 function useCartOperations(){
-  const [cartlist, setCartList] = useState([])
+  const [cartList, setCartList] = useState([])
 
-  return {cartlist, setCartList}
+  return {cartList, setCartList}
 }
 
 
