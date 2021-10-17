@@ -1,9 +1,9 @@
-import React,{useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import Product from '../../components/Product';
 
 function Electronics() {
-    const [electronics, setElectronics] = useState([])
-
+    const [electronics, setElectronics] = useState([]);
+    
     const fetchelectronics = () => {
         fetch('http://localhost:3001/products', {
             method: 'GET'
@@ -26,7 +26,9 @@ function Electronics() {
 
     return (
         <div className='products'>
-            <Product/>
+            {electronics.map(item=>
+            <Product key={item.id} title={item.title} price={item.price} image={item.image} qty={item.qty}/>
+            )}
         </div>
     )
 }

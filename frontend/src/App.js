@@ -13,13 +13,16 @@ import Mens from './routes/categories/Mens';
 import Womens from './routes/categories/Womens';
 
 export const authContext = createContext();
+export const cartContext = createContext();
 
 function App() {
   const auth = useProvideAuth();
+  const cartOperations = useCartOperations();
 
   return (
     <div className="App">
       <authContext.Provider value={auth}>
+      <cartContext.Provider value={cartOperations}>
         <BrowserRouter>
           <NavBar/>
           <Switch>
@@ -34,6 +37,7 @@ function App() {
             <Route path="/Women's clothing" component={Womens}/>
           </Switch>
         </BrowserRouter>
+      </cartContext.Provider>
       </authContext.Provider>
     </div>
   );
@@ -52,5 +56,13 @@ function useProvideAuth(){
 
   return {user, signin, signout}
 }
+
+
+function useCartOperations(){
+  const [cartlist, setCartList] = useState([])
+
+  return {cartlist, setCartList}
+}
+
 
 export default App;

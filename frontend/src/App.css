@@ -44,6 +44,7 @@
 
 img.small{
   max-height: 15rem;
+  max-width: 20rem;
 }
 
 .description{
@@ -51,5 +52,14 @@ img.small{
 }
 
 .products{
+  display: flex;
+  flex-wrap: wrap;
   margin: 2rem 0rem 0rem 3.2rem;
 }
+
+.product{
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+}
+
