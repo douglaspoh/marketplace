@@ -27,7 +27,7 @@ function Jewelery() {
     return (
         <div className='products'>
             {jewelery.map(item =>
-                <Product key={item.id} title={item.title} description={item.description} price={item.price}/>
+                <Product key={item.id} title={item.title} image={item.image} price={item.price}/>
             )}
         </div>
     )
