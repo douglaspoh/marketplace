@@ -9,8 +9,8 @@ function Jewelery() {
             method: 'GET'
         })
         .then(res => {
-            if(!res){
-                console.log('Could not fetch data')
+            if(!res.ok){
+                throw new Error ('Could not fetch data')
             }
             return res.json()
         })
@@ -27,7 +27,7 @@ function Jewelery() {
     return (
         <div className='products'>
             {jewelery.map(item =>
-                <Product key={item.id} title={item.title} image={item.image} price={item.price}/>
+                <Product key={item.id} title={item.title} image={item.image} price={item.price} qty={item.qty}/>
             )}
         </div>
     )

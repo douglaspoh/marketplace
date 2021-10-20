@@ -9,8 +9,8 @@ function Electronics() {
             method: 'GET'
         })
         .then(res => {
-            if(!res){
-                console.log('Could not fetch data')
+            if(!res.ok){
+                throw new Error ('Could not fetch data')
             }
             return res.json()
         })
