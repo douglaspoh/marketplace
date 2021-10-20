@@ -18,6 +18,9 @@ function Mens() {
             const mensdata = data.filter(item => item.category_id===3)
             setMens(mensdata)
         })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     useEffect(()=>{

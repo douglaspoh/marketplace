@@ -8,13 +8,45 @@ function Register() {
     const [password, setPassword] = useState('');
     const [postalcode, setPostalcode] = useState('');
     const [gender, setGender] = useState('');
-    const [createDate, setCreateDate] = useState('');
 
     const register = (e) => {
         e.preventDefault();
-        setCreateDate(new Date());
 
-        fetch()
+        fetch('http://localhost:3001/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                password: password,
+                first_name: firstname,
+                last_name: lastname,
+                postal_code: postalcode,
+                gender: gender,
+                created_at: new Date()
+            })
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error(res.text())
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            setFirstname('')
+            setLastname('')
+            setEmail('')
+            setUsername('')
+            setPassword('')
+            setPostalcode('')
+            setGender('')
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
   
     return (
@@ -42,7 +74,7 @@ function Register() {
                 </div>
                 <div className='formitem'>
                     <label htmlFor='postalcode'>Postal Code: </label>
-                    <input type='text' onChange={(e)=>{setPostalcode(e.target.value)}} value={postalcode} name='postalcode'/>
+                    <input type='text' onChange={(e)=>{setPostalcode(Number(e.target.value))}} value={postalcode} name='postalcode'/>
                 </div>
                 <div className='formitem'>
                     <label htmlFor='gender'>Gender: </label>

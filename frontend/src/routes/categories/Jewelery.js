@@ -18,6 +18,9 @@ function Jewelery() {
             const jewelerydata = data.filter(item => item.category_id===2)
             setJewelery(jewelerydata)
         })
+        .catch(err => {
+            console.log(err)
+        })
     }
     
     useEffect(()=>{

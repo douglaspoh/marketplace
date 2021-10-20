@@ -6,6 +6,30 @@ function Login() {
 
     const login = (e) => {
         e.preventDefault();
+        fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error(res.text())
+            }
+            return res.text()
+        })
+        .then(data => {
+            if(data==='Login successful'){
+                console.log('logged in')
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     return (

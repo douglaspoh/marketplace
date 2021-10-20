@@ -18,6 +18,9 @@ function Electronics() {
             const electronicsdata = data.filter(item=>item.category_id===1)
             setElectronics(electronicsdata)
         })
+        .catch(err => {
+            console.log(err)
+        })
     }
     
     useEffect(()=>{
