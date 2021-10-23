@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom';
 
 function Register() {
+    const history = useHistory();
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
@@ -43,6 +45,7 @@ function Register() {
             setPassword('')
             setPostalcode('')
             setGender('')
+            history.push('/login')
         })
         .catch(err => {
             console.log(err)

@@ -1,12 +1,13 @@
-import React,{useState, useContext} from 'react'
+import React,{useState, useEffect, useContext, useRef} from 'react'
 import {cartContext} from '../App';
 
 function Product(props) {
-    const {title,price,image,qty} = props;
-    const [adding, setAdding] = useState(false);
-    const [addqty, setAddQty] = useState('');
+    const {title, price, image, qty} = props;
+    const [addqty, setAddQty] = useState(1);
     const cartOperations = useContext(cartContext);
     const {cartList, setCartList} = cartOperations;
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -23,9 +24,38 @@ function Product(props) {
                                         }]
             )
         }
-        setAdding(false)
-        setAddQty('')
+        setAddQty(1)
         console.log(cartList)
+    }
+    
+    const handlechange = (e) => {
+        if(e.target.value>0 || e.target.value===''){
+            if(e.target.value>qty){
+                setAddQty(qty)
+            } else{
+                setAddQty(e.target.value)
+            }
+        } else return
+    }
+    
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target) && (ref.current.value==='' || ref.current.value<'1') ) {
+                    setAddQty(1)
+                }
+            }
+
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
     }
     
     return (
@@ -36,14 +66,13 @@ function Product(props) {
 
             {qty>0 ? <div> 
                       In Stock: {qty} 
-                      {!adding ? <button onClick={()=>{setAdding(true)}}>Add to Cart</button> 
-                               : <div>
-                                  <form onSubmit={onSubmit}>
-                                    <input onChange={(e)=>{setAddQty(e.target.value)}} value={addqty}/>
-                                    <button type='submit'>Submit</button>
-                                    <button onClick={()=>{setAdding(false)}}>Cancel</button>
-                                  </form>
-                                 </div>
+                      {
+                        <div>
+                            <button onClick={()=>{setAddQty(Math.max(1,Number(addqty)-1))}}>-</button>
+                            <input type='text' onChange={handlechange} value={addqty} style={{width: '2rem'}} ref={wrapperRef}/>
+                            <button onClick={()=>{setAddQty(Number(addqty)+1)}}>+</button>
+                            <button onClick={onSubmit}>Add to Cart</button>
+                        </div>
                       }
                      </div> 
                    : <div> Out of Stock </div>   
