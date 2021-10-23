@@ -46,8 +46,8 @@ function App() {
 function useProvideAuth(){
   const [user,setUser] = useState(null);
 
-  const signin = () => {
-    setUser('me');
+  const signin = (user) => {
+    setUser(user);
   }
 
   const signout = () => {

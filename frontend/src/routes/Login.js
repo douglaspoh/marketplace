@@ -1,8 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import {authContext} from '../App';
+import {useHistory, useLocation} from 'react-router-dom';
 
 function Login() {
+    const auth = useContext(authContext);
     const [username, setUsername] = useState('');
     const [password,setPassword] = useState('');
+    
+    const history = useHistory();
+    const location = useLocation();
+    const {from} = location.state || {from: {pathname:'/'}};
 
     const login = (e) => {
         e.preventDefault();
@@ -25,6 +32,10 @@ function Login() {
         .then(data => {
             if(data==='Login successful'){
                 console.log('logged in')
+                auth.signin(username)
+                setUsername('')
+                setPassword('')
+                history.replace(from);
             }
         })
         .catch(err => {
