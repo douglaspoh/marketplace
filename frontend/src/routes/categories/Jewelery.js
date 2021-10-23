@@ -30,7 +30,7 @@ function Jewelery() {
     return (
         <div className='products'>
             {jewelery.map(item =>
-                <Product key={item.id} title={item.title} image={item.image} price={item.price} qty={item.qty}/>
+                <Product key={item.id} id={item.id} title={item.title} image={item.image} price={item.price} qty={item.qty}/>
             )}
         </div>
     )

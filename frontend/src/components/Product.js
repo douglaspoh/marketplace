@@ -1,30 +1,38 @@
 import React,{useState, useEffect, useContext, useRef} from 'react'
-import {cartContext} from '../App';
+import {cartContext, authContext} from '../App';
+import {useHistory} from 'react-router-dom';
 
 function Product(props) {
-    const {title, price, image, qty} = props;
+    const {id, title, price, image, qty} = props;
     const [addqty, setAddQty] = useState(1);
+    const auth = useContext(authContext)
     const cartOperations = useContext(cartContext);
     const {cartList, setCartList} = cartOperations;
+    const history = useHistory();
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
     const onSubmit = (e) => {
-        e.preventDefault();
-        const inCart = cartList.find(item => item.title===title)
-        if(inCart){
-            setCartList(cartList.map(item => item.title===title ? {...item, qtyadded: inCart.qtyadded + Number(addqty)}
-                                                                : item
-            ))
+        e.preventDefault();   
+        if(!auth.user){
+            history.push('/login')
         } else{
-            setCartList([...cartList, {
-                                        title: title,
-                                        price: price,
-                                        qtyadded: Number(addqty)
-                                        }]
-            )
+            const inCart = cartList.find(item => item.title===title)
+            if(inCart){
+                setCartList(cartList.map(item => item.title===title ? {...item, qtyadded: inCart.qtyadded + Number(addqty)}
+                                                                    : item
+                ))
+            } else{
+                setCartList([...cartList, {
+                                            title: title,
+                                            price: price,
+                                            qtyadded: Number(addqty),
+                                            id: id
+                                            }]
+                )
+            }
+            setAddQty(1)
         }
-        setAddQty(1)
         console.log(cartList)
     }
     

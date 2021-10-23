@@ -30,7 +30,7 @@ function Mens() {
     return (
         <div className='products'>
             {mens.map(item =>
-                <Product key={item.id} name={item.name} title={item.title} image={item.image} qty={item.qty} price={item.price}/>
+                <Product key={item.id} id={item.id} name={item.name} title={item.title} image={item.image} qty={item.qty} price={item.price}/>
             )}
         </div>
     )

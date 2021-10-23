@@ -8,7 +8,7 @@ function Cart() {
     return (
         <div>
             {cartList.map(item => 
-                <CartItem/>
+                <CartItem key={item.id}/>
             )}
         </div>
     )
