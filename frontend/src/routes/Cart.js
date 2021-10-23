@@ -7,9 +7,19 @@ function Cart() {
     const {cartList} = cart
     return (
         <div>
-            {cartList.map(item => 
-                <CartItem key={item.id}/>
-            )}
+            {cartList.length ? <div>
+                                    {cartList.map(item => 
+                                        <CartItem key={item.id} id ={item.id} title={item.title} qty={item.qtyadded} price={item.price}/>
+                                    )}
+                                    <hr/>
+                                    <b>Total:</b> ${cartList.reduce((a,b) => {
+                                        return a + b.price*b.qtyadded
+                                    }, 0)}
+                                    <button onClick={()=>{}}>Check Out</button>
+                                </div>
+                             : <div>Cart is empty</div> 
+                             
+            }
         </div>
     )
 }

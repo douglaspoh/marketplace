@@ -61,7 +61,33 @@ function useProvideAuth(){
 function useCartOperations(){
   const [cartList, setCartList] = useState([])
 
-  return {cartList, setCartList}
+  const minus = (id, qty) => {
+    if(qty===1){
+      setCartList(cartList.filter(item=>item.id!==id))
+    } else{
+      setCartList(
+        cartList.map(item => 
+          item.id===id ? {...item, qtyadded: item.qtyadded-1} : item
+        )
+      )
+    }
+    
+  }
+
+  const add = (id) => {
+    setCartList(
+      cartList.map(item =>
+        item.id===id ? {...item, qtyadded: item.qtyadded+1} : item)
+    )
+  }
+
+  const remove = (id) => {
+    setCartList(
+      cartList.filter(item=>item.id!==id)
+    )
+  }
+
+  return {cartList, setCartList, minus, add, remove}
 }
 
 
