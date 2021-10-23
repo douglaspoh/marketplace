@@ -9,7 +9,7 @@ function Cart() {
         <div>
             {cartList.length ? <div>
                                     {cartList.map(item => 
-                                        <CartItem key={item.id} id ={item.id} title={item.title} qty={item.qtyadded} price={item.price}/>
+                                        <CartItem key={item.id} id ={item.id} title={item.title} qty={item.qtyadded} price={item.price} image={item.image}/>
                                     )}
                                     <hr/>
                                     <b>Total:</b> ${cartList.reduce((a,b) => {

@@ -2,11 +2,12 @@ import React, {useContext} from 'react'
 import { cartContext } from '../App'
 
 function CartItem(props) {
-    const {title, qty, price, id} = props;
+    const {title, qty, price, id, image} = props;
     const cart = useContext(cartContext);
 
     return (
         <div>
+            <img className='tiny' src={image} alt={title}/>
             {title} x{qty} 
             <button onClick={()=>cart.minus(id, qty)}>-</button>
             <button onClick={()=>cart.add(id)}>+</button>

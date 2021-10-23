@@ -27,7 +27,8 @@ function Product(props) {
                                             title: title,
                                             price: price,
                                             qtyadded: Number(addqty),
-                                            id: id
+                                            id: id,
+                                            image: image
                                             }]
                 )
             }
