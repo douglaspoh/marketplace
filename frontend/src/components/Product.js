@@ -3,8 +3,9 @@ import {cartContext, authContext} from '../App';
 import {useHistory} from 'react-router-dom';
 
 function Product(props) {
-    const {id, title, price, image, qty} = props;
+    const {id, title, price, image} = props;
     const [addqty, setAddQty] = useState(1);
+    const [qty, setQty] = useState('')
     const auth = useContext(authContext)
     const cartOperations = useContext(cartContext);
     const {cartList, setCartList} = cartOperations;
@@ -12,7 +13,17 @@ function Product(props) {
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
 
-    const onSubmit = (e) => {
+    fetch('http://localhost:3001/products', {
+        method: 'GET'
+    })
+    .then(res => res.json())
+    .then(data => {
+        const item = data.filter(item=>item.id===id)
+        setQty(item[0].qty)
+    })
+    .catch(err => console.log(err))
+    
+    const onCartAdd = (e) => {
         e.preventDefault();   
         if(!auth.user){
             history.push('/login')
@@ -32,9 +43,27 @@ function Product(props) {
                                             }]
                 )
             }
-            setAddQty(1)
+
+            fetch('http://localhost:3001/updatequantity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id,
+                    newqty: qty-addqty
+                })
+            })
+            .then(data=>{
+                setQty(qty-addqty)
+                setAddQty(1)
+                return data.json()
+            })
+            .then(res=>console.log(res))
+            .catch(err=>
+                console.log(err)
+            )
         }
-        console.log(cartList)
     }
     
     const handlechange = (e) => {
@@ -80,7 +109,7 @@ function Product(props) {
                             <button onClick={()=>{setAddQty(Math.max(1,Number(addqty)-1))}}>-</button>
                             <input type='text' onChange={handlechange} value={addqty} style={{width: '2rem'}} ref={wrapperRef}/>
                             <button onClick={()=>{setAddQty(Number(addqty)+1)}}>+</button>
-                            <button onClick={onSubmit}>Add to Cart</button>
+                            <button onClick={onCartAdd}>Add to Cart</button>
                         </div>
                       }
                      </div> 

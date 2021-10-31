@@ -30,7 +30,7 @@ function Womens() {
     return (
         <div className='products'>
             {womens.map(item =>
-                <Product key={item.id} id={item.id} name={item.name} title={item.title} image={item.image} qty={item.qty} price={item.price}/>
+                <Product key={item.id} id={item.id} name={item.name} title={item.title} image={item.image} price={item.price}/>
             )}
         </div>
     )

@@ -74,6 +74,22 @@ app.post('/login', async (req,res) => {
     }
 })
 
+app.post('/updatequantity', async (req,res) => {
+    const id = req.body.id;
+    const newqty = req.body.newqty;
+    const product = await Product.updateOne({'id':id},{$set:{'qty':newqty}})
+    try{
+        if(product==null){
+            res.status(500).send('Could not update products')
+        } else{
+            res.status(200).send(product)
+        }
+    } catch{
+        res.status(401).send('Bad request')
+    }
+
+})
+
 mongoose.connect(
     process.env.DB_CONNECTION,
     ()=>console.log('Connected to mongoDB...')
