@@ -5,6 +5,12 @@ import CartItem from '../components/CartItem';
 function Cart() {
     const cart = useContext(cartContext);
     const {cartList} = cart
+
+    const checkout = () => {
+        
+    }
+    
+    
     return (
         <div>
             {cartList.length ? <div>

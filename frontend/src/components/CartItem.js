@@ -32,13 +32,47 @@ function CartItem(props) {
         .catch(err=>console.log(err))
     }
 
+    const minus = (id,qty) => {
+        cart.minus(id,qty)
+        fetch('http://localhost:3001/updatequantity', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                newqty: supply + 1
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>console.log(data))
+        .catch(err=>console.log(err))
+    }
+
+    const remove = (id) => {
+        cart.remove(id)
+        fetch('http://localhost:3001/updatequantity', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                newqty: supply + qty
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>console.log(data))
+        .catch(err=>console.log(err))
+    }
+    
     return (
         <div>
             <img className='tiny' src={image} alt={title}/>
             {title} x{qty} 
-            <button onClick={()=>cart.minus(id, qty)}>-</button>
+            <button onClick={()=>minus(id,qty)}>-</button>
             <button onClick={()=>add(id)}>+</button>
-            <button onClick={()=>cart.remove(id)}>Remove from cart</button>
+            <button onClick={()=>remove(id)}>Remove from cart</button>
             ${price*qty}
         </div>
     )
