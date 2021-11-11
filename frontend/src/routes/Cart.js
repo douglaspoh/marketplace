@@ -4,10 +4,10 @@ import CartItem from '../components/CartItem';
 
 function Cart() {
     const cart = useContext(cartContext);
-    const {cartList} = cart
+    const {cartList, setCartList} = cart
 
     const checkout = () => {
-        
+        setCartList([])
     }
     
     
@@ -21,7 +21,7 @@ function Cart() {
                                     <b>Total:</b> ${cartList.reduce((a,b) => {
                                         return a + b.price*b.qtyadded
                                     }, 0)}
-                                    <button onClick={()=>{}}>Check Out</button>
+                                    <button onClick={()=>checkout()}>Check Out</button>
                                 </div>
                              : <div>Cart is empty</div> 
                              
