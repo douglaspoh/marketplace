@@ -12,7 +12,7 @@ function Cart() {
     
     
     return (
-        <div>
+        <div className='cartpage'>
             {cartList.length ? <div>
                                     {cartList.map(item => 
                                         <CartItem key={item.id} id ={item.id} title={item.title} qty={item.qtyadded} price={item.price} image={item.image}/>
@@ -21,7 +21,7 @@ function Cart() {
                                     <b>Total:</b> ${cartList.reduce((a,b) => {
                                         return a + b.price*b.qtyadded
                                     }, 0)}
-                                    <button onClick={()=>checkout()}>Check Out</button>
+                                    <button onClick={()=>checkout()} className='checkout'>Check Out</button>
                                 </div>
                              : <div>Cart is empty</div> 
                              

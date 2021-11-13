@@ -18,9 +18,17 @@
   margin-left: 0.5rem;
 }
 
+.signout{
+  color: white;
+  border: 0;
+  background-color: transparent;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 .navcart{
   max-height: 2rem;
-  margin: 0rem 0.2rem 0rem 1rem;
+  margin: 0rem 0.2rem 0rem 0.3rem;
 }
 
 .shopeeicon{
@@ -48,8 +56,9 @@ img.small{
 }
 
 img.tiny{
-  max-height:5rem;
-  max-width: 8rem;
+  max-height:2rem;
+  max-width: 2rem;
+  margin-right: 1rem;
 }
 
 .description{
@@ -68,3 +77,31 @@ img.tiny{
   margin: 3rem;
 }
 
+
+.cartpage{
+  margin: 3rem;
+}
+
+.cartpage .checkout{
+  margin: 1rem;
+}
+
+.cartitem{
+  display: flex;
+}
+
+.right{
+  margin-left: auto;
+}
+
+.cartitem .qty{
+  margin: 0rem 2rem 0rem 1rem;
+}
+
+.badge{
+  color: white;
+  background-color: red;
+  height: 1.5rem;
+  border-radius: 30%;
+  border-color: red;
+}

@@ -67,13 +67,14 @@ function CartItem(props) {
     }
     
     return (
-        <div>
+        <div className='cartitem'>
             <img className='tiny' src={image} alt={title}/>
-            {title} x{qty} 
+            <div>{title}</div>
+            <div className='qty'> x{qty} </div>
             <button onClick={()=>minus(id,qty)}>-</button>
             <button onClick={()=>add(id)}>+</button>
             <button onClick={()=>remove(id)}>Remove from cart</button>
-            ${price*qty}
+            <div className='right'>${price*qty}</div>
         </div>
     )
 }
