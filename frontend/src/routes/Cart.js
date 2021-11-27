@@ -23,7 +23,7 @@ function Cart() {
                                     }, 0)}
                                     <button onClick={()=>checkout()} className='checkout'>Check Out</button>
                                 </div>
-                             : <div>Cart is empty</div> 
+                             : <div className='emptycart'>Cart is empty</div> 
                              
             }
         </div>

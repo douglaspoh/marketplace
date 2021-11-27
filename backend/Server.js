@@ -65,7 +65,7 @@ app.post('/login', async (req,res) => {
     }
     try{
         if(await bcrypt.compare(req.body.password, customer.password)){
-            res.send('Login successful')
+            res.send(customer)
         } else{
             res.send('Password incorrect');
         }
@@ -74,10 +74,26 @@ app.post('/login', async (req,res) => {
     }
 })
 
+app.post('/storecart', async (req,res) => {
+    const customer = await Customer.updateOne( {email: req.body.email}, {$set:{cartlist: req.body.cartlist}} )
+    if(customer==null){
+        res.status(400).send('Username is incorrect');
+    }
+    try{
+        if(customer==null){
+            res.status(500).send('Could not store cart list')
+        } else{
+            res.status(200).send(customer)
+        }
+    } catch{
+        res.status(401).send('Bad request')
+    }
+})
+
 app.post('/updatequantity', async (req,res) => {
     const id = req.body.id;
     const newqty = req.body.newqty;
-    const product = await Product.updateOne({'id':id},{$set:{'qty':newqty}})
+    const product = await Product.updateOne( {id:id}, {$set:{qty: newqty}} )
     try{
         if(product==null){
             res.status(500).send('Could not update products')

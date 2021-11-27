@@ -23,18 +23,18 @@ function Product(props) {
     })
     .catch(err => console.log(err))
     
-    const onCartAdd = (e) => {
+    const onCartAdd = async (e) => {
         e.preventDefault();   
         if(!auth.user){
             history.push('/login')
         } else{
-            const inCart = cartList.find(item => item.title===title)
+            const inCart = await cartList.find(item => item.title===title)
             if(inCart){
-                setCartList(cartList.map(item => item.title===title ? {...item, qtyadded: inCart.qtyadded + Number(addqty)}
+                await setCartList(cartList.map(item => item.title===title ? {...item, qtyadded: inCart.qtyadded + Number(addqty)}
                                                                     : item
                 ))
             } else{
-                setCartList([...cartList, {
+                await setCartList([...cartList, {
                                             title: title,
                                             price: price,
                                             qtyadded: Number(addqty),
@@ -59,10 +59,23 @@ function Product(props) {
                 setAddQty(1)
                 return data.json()
             })
-            .then(res=>console.log(res))
+            .then(res=>console.log(cartList))
             .catch(err=>
                 console.log(err)
             )
+
+            fetch('http://localhost:3001/storecart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: auth.user.email,
+                    cartlist: cartList
+                })
+            })
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
         }
     }
     
@@ -106,9 +119,9 @@ function Product(props) {
                       In Stock: {qty} 
                       {
                         <div>
-                            <button onClick={()=>{setAddQty(Math.max(1,Number(addqty)-1))}}>-</button>
+                            <button onClick={()=>setAddQty(Math.max(1,Number(addqty)-1))}>-</button>
                             <input type='text' onChange={handlechange} value={addqty} style={{width: '2rem'}} ref={wrapperRef}/>
-                            <button onClick={()=>{setAddQty(Number(addqty)+1)}}>+</button>
+                            <button onClick={()=>setAddQty(Number(addqty)+1)}>+</button>
                             <button onClick={onCartAdd}>Add to Cart</button>
                         </div>
                       }

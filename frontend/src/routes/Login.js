@@ -1,9 +1,12 @@
 import React, {useState, useContext} from 'react'
 import {authContext} from '../App';
+import {cartContext} from '../App';
 import {useHistory, useLocation} from 'react-router-dom';
 
 function Login() {
     const auth = useContext(authContext);
+    const cart = useContext(cartContext);
+    const {setCartList} = cart;
     const [username, setUsername] = useState('');
     const [password,setPassword] = useState('');
     
@@ -27,12 +30,13 @@ function Login() {
             if(!res.ok){
                 throw new Error(res.text())
             }
-            return res.text()
+            return res.json()
         })
         .then(data => {
-            if(data==='Login successful'){
+            if(typeof(data)==='object'){
                 console.log('logged in')
-                auth.signin(username)
+                auth.signin(username, data.email)
+                setCartList(data.cartlist)
                 setUsername('')
                 setPassword('')
                 history.replace(from);

@@ -7,7 +7,7 @@ function Category(props) {
     return (
         <div className='catitem'>
             <div> <b>{name}</b> </div>
-            <NavLink to={`/${name}`}> <img src={image} className='small' alt={description}/> </NavLink>
+            <NavLink to={`/${name}`}> <img src={image} className='large' alt={description}/> </NavLink>
             <div className='description'> {description} </div>
         </div>
     )

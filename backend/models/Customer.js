@@ -31,7 +31,11 @@ const CustomerSchema = mongoose.Schema({
     },
     created_at: {
         type: Date,
-        required: true
+        default: Date.now
+    },
+    cartlist: {
+        type: Array,
+        default: []
     }
 })
 

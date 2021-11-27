@@ -26,8 +26,7 @@ function Register() {
                 first_name: firstname,
                 last_name: lastname,
                 postal_code: postalcode,
-                gender: gender,
-                created_at: new Date()
+                gender: gender
             })
         })
         .then(res => {

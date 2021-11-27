@@ -39,6 +39,7 @@
 .main{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin: 2rem 0rem 0rem 1.4rem;
 }
 
@@ -50,14 +51,19 @@
   margin: 2rem 0rem 0rem 3.2rem;
 }
 
-img.small{
-  max-height: 15rem;
+img.large{
+  max-height: 20rem;
   max-width: 20rem;
 }
 
+img.small{
+  max-height: 10rem;
+  max-width: 10rem;
+}
+
 img.tiny{
-  max-height:2rem;
-  max-width: 2rem;
+  max-height: 4rem;
+  max-width: 4rem;
   margin-right: 1rem;
 }
 
@@ -68,6 +74,7 @@ img.tiny{
 .products{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   margin: 2rem 0rem 0rem 3.2rem;
 }
 
@@ -88,6 +95,7 @@ img.tiny{
 
 .cartitem{
   display: flex;
+  align-items: center;
 }
 
 .right{
@@ -98,10 +106,18 @@ img.tiny{
   margin: 0rem 2rem 0rem 1rem;
 }
 
+.cartitem .cartbutton{
+  height: 1.5rem;
+}
+
 .badge{
   color: white;
   background-color: red;
   height: 1.5rem;
   border-radius: 30%;
   border-color: red;
+}
+
+.emptycart{
+  font-size: 25px;
 }

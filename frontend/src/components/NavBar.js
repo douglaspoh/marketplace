@@ -8,8 +8,28 @@ import {cartContext} from '../App';
 function NavBar() {
     const auth = useContext(authContext);
     const cart = useContext(cartContext);
-    const {cartList} = cart;
+    const {cartList, setCartList} = cart;
 
+    const signout = () => {
+        const email = auth.user.email
+        fetch('http://localhost:3001/storecart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                cartlist: cartList
+            })
+        })
+        .then(res=>res.json)
+        .then(data=>{
+            setCartList([])
+            auth.signout();
+        })
+        .catch(err=>console.log(err))
+    }
+    
     return (
         <div className='navbar'>
             <NavLink to='/' exact={true} className='title'  style={{textDecoration:'none'}}>
@@ -18,10 +38,10 @@ function NavBar() {
             <div className='navright'>
                 {auth.user ? <>
                              <div className='navitem'>
-                                Welcome <i>{auth.user}</i>
+                                Welcome <i>{auth.user.username}</i>
                              </div>
                              <div className='navitem'>
-                                <button onClick={()=>{auth.signout()}} className='signout'>Sign Out</button>
+                                <button onClick={()=>signout()} className='signout'>Sign Out</button>
                              </div>
                              </>
                            : <>
