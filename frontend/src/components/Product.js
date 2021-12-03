@@ -80,7 +80,7 @@ function Product(props) {
         })
         .then(res=>console.log(res))
         .catch(err=>console.log(err))
-    }, [cartList])
+    }, [cartList, auth.user.email])
 
     const handlechange = (e) => {
         if(e.target.value>0 || e.target.value===''){
@@ -102,7 +102,6 @@ function Product(props) {
                     setAddQty(1)
                 }
             }
-
             // Bind the event listener
             document.addEventListener("mousedown", handleClickOutside);
             return () => {

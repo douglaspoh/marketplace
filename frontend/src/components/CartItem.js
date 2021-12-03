@@ -1,10 +1,12 @@
-import React, {useState, useContext} from 'react'
-import { cartContext } from '../App'
+import React, {useState, useEffect, useContext} from 'react'
+import { authContext, cartContext } from '../App'
 
 function CartItem(props) {
     const {title, price, id, image, qty} = props;
     const [supply, setSupply] = useState('');
     const cart = useContext(cartContext);
+    const auth = useContext(authContext);
+    const {cartList} = cart;
 
     fetch('http://localhost:3001/products',{
         method: 'GET'
@@ -66,6 +68,21 @@ function CartItem(props) {
         .catch(err=>console.log(err))
     }
     
+    useEffect( () => {
+        fetch('http://localhost:3001/storecart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: auth.user.email,
+                cartlist: cartList
+            })
+        })
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
+    }, [cartList, auth.user.email])
+
     return (
         <div className='cartitem'>
             <img className='tiny' src={image} alt={title}/>
