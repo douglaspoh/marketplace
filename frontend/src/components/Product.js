@@ -23,18 +23,18 @@ function Product(props) {
     })
     .catch(err => console.log(err))
     
-    const onCartAdd = async (e) => {
+    const onCartAdd = (e) => {
         e.preventDefault();   
         if(!auth.user){
             history.push('/login')
         } else{
-            const inCart = await cartList.find(item => item.title===title)
+            const inCart = cartList.find(item => item.title===title)
             if(inCart){
-                await setCartList(cartList.map(item => item.title===title ? {...item, qtyadded: inCart.qtyadded + Number(addqty)}
+                setCartList(cartList.map(item => item.title===title ? {...item, qtyadded: inCart.qtyadded + Number(addqty)}
                                                                     : item
                 ))
             } else{
-                await setCartList([...cartList, {
+                setCartList([...cartList, {
                                             title: title,
                                             price: price,
                                             qtyadded: Number(addqty),
@@ -64,21 +64,24 @@ function Product(props) {
                 console.log(err)
             )
 
-            fetch('http://localhost:3001/storecart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: auth.user.email,
-                    cartlist: cartList
-                })
-            })
-            .then(res=>console.log(res))
-            .catch(err=>console.log(err))
         }
     }
     
+    useEffect( ()=> {
+        fetch('http://localhost:3001/storecart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: auth.user.email,
+                cartlist: cartList
+            })
+        })
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
+    }, [cartList])
+
     const handlechange = (e) => {
         if(e.target.value>0 || e.target.value===''){
             if(e.target.value>qty){
