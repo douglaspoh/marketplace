@@ -30,7 +30,6 @@ function App() {
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
               <PrivateRoute path='/cart' component={Cart}/>
-
               <Route path='/Electronics' component={Electronics}/>
               <Route path='/Jewelery' component={Jewelery}/>
               <Route path="/Men's clothing" component={Mens}/>
