@@ -36,7 +36,7 @@ function NavBar() {
                 <img src={shopeeicon} className='shopeeicon' alt='icon'/><b>Real Shopee</b> 
             </NavLink>
             <div className='navright'>
-                {auth.user ? <>
+                {auth.user.username ? <>
                              <div className='navitem'>
                                 Welcome <i>{auth.user.username}</i>
                              </div>

@@ -43,14 +43,14 @@ function App() {
 }
 
 function useProvideAuth(){
-  const [user,setUser] = useState();
+  const [user,setUser] = useState({username: '', email: ''});
 
   const signin = (username, email) => {
     setUser({username: username, email: email});
   }
 
   const signout = () => {
-    setUser(null);
+    setUser({username: '', email: ''});
   } 
 
   return {user, signin, signout}

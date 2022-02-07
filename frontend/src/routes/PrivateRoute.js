@@ -7,7 +7,7 @@ function PrivateRoute({component:Cart, ...rest}) {
     
     return (
             <Route {...rest}
-                render = {routeProps => auth.user ? <Cart {...routeProps}/>
+                render = {routeProps => auth.user.username ? <Cart {...routeProps}/>
                                                   : <Redirect to = '/login'/>}
             />
     )
